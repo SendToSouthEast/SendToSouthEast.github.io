@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>IP5306电源板设计 | 寄东南のBlog</title><meta name="author" content="寄东南"><meta name="copyright" content="寄东南"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="IP5306电源板设计使用说明说明：芯片IP5306是一款充电宝芯片，价格非常便宜，而且性能也不错，但是假如用它去带功率比较低的单片机的话，过一会儿时间会掉电，进入休眠模式 所以我选用的是IP5306CK这个特殊的版本。1.假如有需要，你也可以焊接IP5306原版，是完全兼容的。 2.IP5306CK的待机电流比较大，因为在持续工作嘛，加上1117也有一定的静态电流。因此我将5306的电源和电池电">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IP5306电源板设计">
+<meta property="og:url" content="https://sendtosoutheast.github.io/2022/09/10/FAFSTSpowerboard1/index.html">
+<meta property="og:site_name" content="寄东南のBlog">
+<meta property="og:description" content="IP5306电源板设计使用说明说明：芯片IP5306是一款充电宝芯片，价格非常便宜，而且性能也不错，但是假如用它去带功率比较低的单片机的话，过一会儿时间会掉电，进入休眠模式 所以我选用的是IP5306CK这个特殊的版本。1.假如有需要，你也可以焊接IP5306原版，是完全兼容的。 2.IP5306CK的待机电流比较大，因为在持续工作嘛，加上1117也有一定的静态电流。因此我将5306的电源和电池电">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sendtosoutheast.github.io/images/5306powerboard.jpg">
+<meta property="article:published_time" content="2022-09-10T06:38:28.000Z">
+<meta property="article:modified_time" content="2022-10-01T15:53:00.000Z">
+<meta property="article:author" content="寄东南">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sendtosoutheast.github.io/images/5306powerboard.jpg"><link rel="shortcut icon" href="/images/favicon.jng"><link rel="canonical" href="https://sendtosoutheast.github.io/2022/09/10/FAFSTSpowerboard1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'IP5306电源板设计',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-01 23:53:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/Avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/2022/07/23/hello-world/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/5306powerboard.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">寄东南のBlog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/2022/07/23/hello-world/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">IP5306电源板设计</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-10T06:38:28.000Z" title="发表于 2022-09-10 14:38:28">2022-09-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T15:53:00.000Z" title="更新于 2022-10-01 23:53:00">2022-10-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="IP5306电源板设计"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="IP5306电源板设计"><a href="#IP5306电源板设计" class="headerlink" title="IP5306电源板设计"></a>IP5306电源板设计</h1><h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>说明：芯片IP5306是一款充电宝芯片，价格非常便宜，而且性能也不错，但是假如用它去带功率比较低的单片机的话，过一会儿时间会掉电，进入休眠模式 所以我选用的是IP5306CK这个特殊的版本。<br>1.假如有需要，你也可以焊接IP5306原版，是完全兼容的。</p>
+<p>2.IP5306CK的待机电流比较大，因为在持续工作嘛，加上1117也有一定的静态电流。因此我将5306的电源和电池电源分开出来，假如你不考虑功耗，直接将VCC与BAT+短接即可。</p>
+<p>3.1117 3.3和防倒灌二极管可以不焊接</p>
+<p>4.typeC可以不焊接，可以使用vin引脚输入5v充电</p>
+<p>两排引脚的间隔：1415mil 两个引脚间的间距：2mm</p>
+<table>
+<thead>
+<tr>
+<th>引脚</th>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>BAT-</td>
+<td>电池负极，请勿接地，否则电池保护功能会失效</td>
+</tr>
+<tr>
+<td>2</td>
+<td>BAT+</td>
+<td>电池正极，用于保护芯片采样</td>
+</tr>
+<tr>
+<td>3</td>
+<td>VCC</td>
+<td>升压电路电源，可以和BAT+间放一个开关</td>
+</tr>
+<tr>
+<td>4</td>
+<td>KEY</td>
+<td>电量指示灯开关，也可以根据芯片资料改装出一个按键控制的照明灯</td>
+</tr>
+<tr>
+<td>5</td>
+<td>GND</td>
+<td>地</td>
+</tr>
+<tr>
+<td>6</td>
+<td>USBDP</td>
+<td>typec</td>
+</tr>
+<tr>
+<td>7</td>
+<td>USBDN</td>
+<td>typec</td>
+</tr>
+<tr>
+<td>8</td>
+<td>5VIN</td>
+<td>5V输入，和TYPEC以及芯片充电输入相连</td>
+</tr>
+<tr>
+<td>9</td>
+<td>5VOUT</td>
+<td>升压输出</td>
+</tr>
+<tr>
+<td>10</td>
+<td>3.3VOUT</td>
+<td>LDO输出</td>
+</tr>
+</tbody></table>
+<h2 id="功能简介"><a href="#功能简介" class="headerlink" title="功能简介"></a>功能简介</h2><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
+<li><input checked disabled type="checkbox"> 5V2.4A输出</li>
+<li><input checked disabled type="checkbox"> 2.1A充电</li>
+<li><input checked disabled type="checkbox"> 持续升压，不需要脉冲信号（可选），使用三合一SOC</li>
+<li><input checked disabled type="checkbox"> 升压效率高，稳定</li>
+<li><input checked disabled type="checkbox"> 集成锂电池保护芯片，过充过放保护</li>
+<li><input checked disabled type="checkbox"> 4级电量灯</li>
+<li><input checked disabled type="checkbox"> 集成AMS1117-3.3V输出</li>
+<li><input checked disabled type="checkbox"> 2.0排针，更小的高度</li>
+<li><input checked disabled type="checkbox"> 超低的价格（除了PCB价格在2.5以下）</li>
+<li><input checked disabled type="checkbox"> 集成TYPEC充电口（可以不焊接，另留有VIN接口）</li>
+<li><input checked disabled type="checkbox"> 防止从5VOUT倒灌（但是不能连接VOUT和VIN）</li>
+</ul>
+<h3 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h3><ul>
+<li><input disabled type="checkbox"> 待机电流3ma，比较大，此电源模块的升压部分不能用在需要持续保持开机的项目中，此类项目建议选用非CK版本的芯片</li>
+<li><input disabled type="checkbox"> 不能直接与主控通信（有兴趣的同学可以研究英集芯有I2C的型号）</li>
+<li><input disabled type="checkbox"> 不兼容洞洞板</li>
+</ul>
+<h2 id="料件的选择"><a href="#料件的选择" class="headerlink" title="料件的选择"></a>料件的选择</h2><p>其实我已经做过一版的电源板。但是这个电源板输出电压不稳，问技术是电感问题，使用的嵌入系统的方式是贴焊直针排母，比较晃。主控是TP5400.</p>
+<p>我玩过很多充电宝芯片以及主板（对英集芯（ip）印象很好）。一直想着用移动电源的芯片去做一个单片机系统供电模块。后来偶然间发现了ip5306-ck这个芯片！持续升压！1.45以下的价格！！！！！太妙了！！</p>
+<img src="/2022/09/10/FAFSTSpowerboard1/1.jpg" alt="2" style="zoom: 20%;">
+
+<p>于是，买芯片。开工吧！</p>
+<img src="/2022/09/10/FAFSTSpowerboard1/2.jpg" alt="2" style="zoom: 20%;">
+
+<p>(总是埋怨微信压缩图片太狠，但是需要贴在在线博客网速不够的时候，微信能直接压缩500%，太棒了)</p>
+<h3 id="IP5306简介"><a href="#IP5306简介" class="headerlink" title="IP5306简介"></a>IP5306简介</h3><p>ip5306-ck是ip5306的特殊版本，持续升压。本升压板也可以使用ip5306，但是需要负载达到要求或者给key引脚持续的pwm信号模拟激活。</p>
+<blockquote>
+<p>IP5306 是一款集成升压转换器、锂电池充电管<br>理、电池电量指示的多功能电源管理 SOC，为移动<br>电源提供完整的电源解决方案。<br>IP5306 的高集成度与丰富功能，使其在应用时<br>仅需极少的外围器件，并有效减小整体方案的尺寸，<br>降低 BOM 成本。<br>IP5306 只需一个电感实现降压与升压功能。可<br>以支持低成本电感和电容。<br>IP5306 的同步升压系统提供最大 2.4A 输出电<br>流，转换效率高至 92%。空载时，自动进入休眠状<br>态，静态电流降至 100uA。<br>IP5306 采用开关充电技术，提供最大 2.1A 电<br>流，充电效率高至 91%。内置 IC 温度和输入电压<br>智能调节充电电流。<br>IP5306 支持  1、2、3、4 颗    LED 电量显示。<br>IP5306 采用  ESOP8 封装</p>
+</blockquote>
+<p><img src="/2022/09/10/FAFSTSpowerboard1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE1.jpg" alt="屏幕截图 2022-09-10 151019"></p>
+<p>电路图非常简单对吧！对吧！</p>
+<h3 id="保护芯片XB7608AJ"><a href="#保护芯片XB7608AJ" class="headerlink" title="保护芯片XB7608AJ"></a>保护芯片XB7608AJ</h3><p>保护芯片第一个版本和第二个版本选择的是富满的DW03D。不用额外的使用mos。但是DW03D价格略贵（5-7毛），而且21年芯片大涨之后价格更高了。第二版的此部分原理图以及PCB如下</p>
+<p><img src="/2022/09/10/FAFSTSpowerboard1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2.jpg" alt="屏幕截图 2022-09-10 151523"></p>
+<p><img src="/2022/09/10/FAFSTSpowerboard1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE3.jpg" alt="屏幕截图 2022-09-10 151554"></p>
+<p>第二个版本的板子呢，只使用了一颗LED。而且刚好板子有点问题没有打，趁机改版。</p>
+<p>我相中了XB7608AJ芯片。遇到他也是因为看到其他的产品用了这个芯片，而且感觉封装非常奇怪，（CPC5），就去查了一下，感觉价格非常便宜，（0.26￥），而且外围电路只需要一颗电阻和一个电容，比dw03d也更好焊接。是 赛芯微电子有限公司（XySemi Inc）的芯片。<br>这颗芯片其实我在去年已经买了一些，可惜不知道放在哪里了 改版的时候才想起来还有一款这个芯片可以用。那么就用吧，希望别出问题。<br>我在芯片的官网并没有找到规格书，在立创商城找到了英文规格书，大概介绍下这个芯片。</p>
+<p>![屏幕截图 2022-09-10 152128](FAFSTSpowerboard1&#x2F;屏幕截图 2022-09-10 152128.jpg)</p>
+<p>![屏幕截图 2022-09-10 152201](FAFSTSpowerboard1&#x2F;屏幕截图 2022-09-10 152201.jpg)</p>
+<p><img src="/2022/09/10/FAFSTSpowerboard1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE7.jpg" alt="屏幕截图7">外围电路极其简单！</p>
+<p>![屏幕截图 2022-09-10 152342](FAFSTSpowerboard1&#x2F;屏幕截图 2022-09-10 152451.jpg)</p>
+<h3 id="板对板连接"><a href="#板对板连接" class="headerlink" title="板对板连接"></a>板对板连接</h3><p>我一直在寻找一种板对板连接器 需要具备如下几个特点：</p>
+<p>1.便于拓展，比如排母可以直接插杜邦线调试</p>
+<p>2.立体空间小，如果直接用2.54直插排母，立体空间会很大</p>
+<p>3.价格低廉而且问题少</p>
+<p>4.局限性小，假如用M.2，板子就必须打0.8毫米的，局限性很大。</p>
+<p>5.结构稳定</p>
+<p>6.占用空间小</p>
+<p>7.有可移植性</p>
+<p>鱼和熊掌不可兼得也，到如今我也没有找到一款很符合心意的板对板连接器</p>
+<p>所以这个板子我的方案是，<del>2.0mm半孔。你焊排针也是没得问题的！</del></p>
+<p>但是，嘉立创要问我收250元半孔费…………这价格………………</p>
+<p>于是就改为2.0mm排针了……</p>
+<p>主要因为：价格便宜，高度比较低，空间比较小</p>
+<h2 id="原理图设计"><a href="#原理图设计" class="headerlink" title="原理图设计"></a>原理图设计</h2><p><img src="/2022/09/10/FAFSTSpowerboard1/Schematic_IP5306CK_2022-09-10.png" alt="Schematic_IP5306CK_2022-09-10"></p>
+<p>使用嘉立创EDA是因为不用画库……之前用AD画库真的好一个累！</p>
+<h2 id="PCB设计"><a href="#PCB设计" class="headerlink" title="PCB设计"></a>PCB设计</h2><p>以下是第一个版本，因为嘉立创要收250半孔费，故废弃</p>
+<p><img src="/2022/09/10/FAFSTSpowerboard1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE8.jpg" alt="屏幕截图 2022-09-10 181911"></p>
+<p>第二版</p>
+<p><img src="/2022/09/10/FAFSTSpowerboard1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE9.jpg" alt="屏幕截图 2022-10-01 215518"></p>
+<p><img src="/2022/09/10/FAFSTSpowerboard1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE10.jpg" alt="屏幕截图 2022-10-01 213925"></p>
+<p><img src="/2022/09/10/FAFSTSpowerboard1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE11.jpg" alt="屏幕截图 2022-10-01 215502"></p>
+<p>板子尺寸：2.0x38.8mm</p>
+<p>使用绿色打板子，因为电源嘛。用绿色好了</p>
+<h2 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h2><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Designator</th>
+<th>Footprint</th>
+<th>Quantity</th>
+<th>Manufacturer Part</th>
+<th>Manufacturer</th>
+<th>嘉立创ID</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>10u</td>
+<td>C1,C2,C10,C13</td>
+<td>C0805</td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>22u</td>
+<td>C3,C4,C5,C6,C7,C8</td>
+<td>C0805</td>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.1u</td>
+<td>C9,C11,C12</td>
+<td>C0805</td>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>SS32</td>
+<td>D1</td>
+<td>SS34</td>
+<td>1</td>
+<td>SS32</td>
+<td></td>
+<td>C123938</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1uH</td>
+<td>L1</td>
+<td>IND-SMD_L7.0-W6.6_MPCA-0630</td>
+<td>1</td>
+<td>SPM6530T-1R0M120</td>
+<td></td>
+<td>C87572</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0805_G</td>
+<td>LED1,LED2,LED3,LED4</td>
+<td>LED0805_GREEN</td>
+<td>4</td>
+<td>NCD0805G1</td>
+<td></td>
+<td>C84260</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2R</td>
+<td>R1</td>
+<td>R0805</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>0.5R</td>
+<td>R3</td>
+<td>R0805</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>1k</td>
+<td>R4</td>
+<td>R0805</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>1K</td>
+<td>R6</td>
+<td>R0805</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>10k</td>
+<td>R7</td>
+<td>R0805</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>TS-1088R-02026小龟开关</td>
+<td>SW1</td>
+<td>SW-SMD_L3.9-W3.0-P4.45</td>
+<td>1</td>
+<td>TS-1088R-02026</td>
+<td></td>
+<td>C455280</td>
+</tr>
+<tr>
+<td>13</td>
+<td>IP5306CK</td>
+<td>U1</td>
+<td>ESOP-8-EP</td>
+<td>1</td>
+<td>IP5306</td>
+<td>INJOINIC</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td>XB7608AJ</td>
+<td>U2</td>
+<td>CPC-5_L2.6-W2.6-P0.53-LS4.0-BL</td>
+<td>1</td>
+<td>XB7608AJ</td>
+<td>xysemi(赛芯微)</td>
+<td>C2681921</td>
+</tr>
+<tr>
+<td>15</td>
+<td>AMS1117-3.3</td>
+<td>U3</td>
+<td>SOT-223-3_L6.5-W3.4-P2.30-LS7.0-BR</td>
+<td>1</td>
+<td>AMS1117-3.3</td>
+<td>AMS</td>
+<td>C6186</td>
+</tr>
+<tr>
+<td>16</td>
+<td>TYPE-C 16PIN 2MD(073)</td>
+<td>USB1</td>
+<td>USB-C-SMD_TYPE-C-6PIN-2MD-073</td>
+<td>1</td>
+<td>TYPE-C 16PIN 2MD(073)</td>
+<td></td>
+<td>C2765186</td>
+</tr>
+</tbody></table>
+<h2 id="打板测试"><a href="#打板测试" class="headerlink" title="打板测试"></a>打板测试</h2><img src="/2022/09/10/FAFSTSpowerboard1/66c372954fb5b75626da5b24d4b0cf2.jpg" alt="66c372954fb5b75626da5b24d4b0cf2" style="zoom: 33%;">
+
+<img src="/2022/09/10/FAFSTSpowerboard1/163d71e28fe8abdc93b625b4a5a5858.jpg" alt="163d71e28fe8abdc93b625b4a5a5858" style="zoom: 33%;">
+
+<img src="/2022/09/10/FAFSTSpowerboard1/3620e7aab547c2e9ef92018f1efefce.jpg" alt="3620e7aab547c2e9ef92018f1efefce" style="zoom:33%;">
+
+<img src="/2022/09/10/FAFSTSpowerboard1/aa43492f0d1ccb5d7defa50acb6a087.jpg" alt="aa43492f0d1ccb5d7defa50acb6a087" style="zoom:25%;">
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>其实打的板和最后一版还是有一些区别的，最后一版的版本号是v5，而我打的那一板是v4，除了两个过孔有点小问题之外，最大的问题是两个LED放反了……（ LED3和LED4， V5已经修正）</p>
+<p><img src="/2022/09/10/FAFSTSpowerboard1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE12.jpg" alt="屏幕截图 2022-10-01 220216"></p>
+<p>当时非常郁闷，心想就这样将就着用吧 然后过了一天时间，突然想起来这两个LED，只要反过来焊就行了呀！</p>
+<p><a target="_blank" rel="noopener" href="https://oshwhub.com/yxynb/IP5306CKPOWERBOARD">https://oshwhub.com/yxynb/IP5306CKPOWERBOARD</a></p>
+<p> <a href="FAFSTSpowerboard1/Gerber_PCB_IP5306CK_3.zip">Gerber_PCB_IP5306CK_3.zip</a> </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://sendtosoutheast.github.io">寄东南</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://sendtosoutheast.github.io/2022/09/10/FAFSTSpowerboard1/">https://sendtosoutheast.github.io/2022/09/10/FAFSTSpowerboard1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://sendtosoutheast.github.io" target="_blank">寄东南のBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/5306powerboard.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/07/29/qqhistory1/"><img class="next-cover" src="/images/qqhistory1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">QQ安卓端聊天记录数据分析 一</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/Avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">寄东南</div><div class="author-info__description">寄！(其实起名字时还没寄这个梗)</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SendToSouthEast"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/SendToSouthEast" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/sendtose@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IP5306%E7%94%B5%E6%BA%90%E6%9D%BF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">IP5306电源板设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">使用说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.</span> <span class="toc-text">功能简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">1.2.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text">局限性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%99%E4%BB%B6%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">1.3.</span> <span class="toc-text">料件的选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP5306%E7%AE%80%E4%BB%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">IP5306简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E8%8A%AF%E7%89%87XB7608AJ"><span class="toc-number">1.3.2.</span> <span class="toc-text">保护芯片XB7608AJ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%BF%E5%AF%B9%E6%9D%BF%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.3.3.</span> <span class="toc-text">板对板连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E5%9B%BE%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">原理图设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCB%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">PCB设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BOM"><span class="toc-number">1.6.</span> <span class="toc-text">BOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E6%9D%BF%E6%B5%8B%E8%AF%95"><span class="toc-number">1.7.</span> <span class="toc-text">打板测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">1.8.</span> <span class="toc-text">后记</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/10/FAFSTSpowerboard1/" title="IP5306电源板设计"><img src="/images/5306powerboard.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IP5306电源板设计"/></a><div class="content"><a class="title" href="/2022/09/10/FAFSTSpowerboard1/" title="IP5306电源板设计">IP5306电源板设计</a><time datetime="2022-09-10T06:38:28.000Z" title="发表于 2022-09-10 14:38:28">2022-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/29/qqhistory1/" title="QQ安卓端聊天记录数据分析 一"><img src="/images/qqhistory1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QQ安卓端聊天记录数据分析 一"/></a><div class="content"><a class="title" href="/2022/07/29/qqhistory1/" title="QQ安卓端聊天记录数据分析 一">QQ安卓端聊天记录数据分析 一</a><time datetime="2022-07-29T14:57:44.000Z" title="发表于 2022-07-29 22:57:44">2022-07-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/25/BGInote/" title="BGI引擎脚本简单分析-基于巧克甜恋"><img src="/images/chlo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BGI引擎脚本简单分析-基于巧克甜恋"/></a><div class="content"><a class="title" href="/2022/07/25/BGInote/" title="BGI引擎脚本简单分析-基于巧克甜恋">BGI引擎脚本简单分析-基于巧克甜恋</a><time datetime="2022-07-25T07:08:46.000Z" title="发表于 2022-07-25 15:08:46">2022-07-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/23/hello-world/" title="Hello World"><img src="/images/evcg09b1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2022/07/23/hello-world/" title="Hello World">Hello World</a><time datetime="2022-07-23T11:15:17.000Z" title="发表于 2022-07-23 19:15:17">2022-07-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By 寄东南</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

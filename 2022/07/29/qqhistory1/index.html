@@ -1,0 +1,342 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>QQ安卓端聊天记录数据分析 一 | 寄东南のBlog</title><meta name="author" content="寄东南"><meta name="copyright" content="寄东南"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="QQ安卓端聊天记录数据分析 一起因与现状起因起因呢……是我想备份和好朋友们的群聊聊天记录。其实聊天记录的文件信息并不多，不知道QQ是怎么动辄30G甚至更多……而且，时间一久，聊天记录就不让看了（指从群聊的查找聊天记录-日期）然而文件还没删，于是就开始了此项目。 现状网络上有一些提取工具。如广为传播的付费软件——楼月以及各种杂七杂八的软件。这些软件不是要求付费，就是消息乱码、不可使用、无法导出，所以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QQ安卓端聊天记录数据分析 一">
+<meta property="og:url" content="https://sendtosoutheast.github.io/2022/07/29/qqhistory1/index.html">
+<meta property="og:site_name" content="寄东南のBlog">
+<meta property="og:description" content="QQ安卓端聊天记录数据分析 一起因与现状起因起因呢……是我想备份和好朋友们的群聊聊天记录。其实聊天记录的文件信息并不多，不知道QQ是怎么动辄30G甚至更多……而且，时间一久，聊天记录就不让看了（指从群聊的查找聊天记录-日期）然而文件还没删，于是就开始了此项目。 现状网络上有一些提取工具。如广为传播的付费软件——楼月以及各种杂七杂八的软件。这些软件不是要求付费，就是消息乱码、不可使用、无法导出，所以">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sendtosoutheast.github.io/images/qqhistory1.jpg">
+<meta property="article:published_time" content="2022-07-29T14:57:44.000Z">
+<meta property="article:modified_time" content="2022-10-01T16:19:36.000Z">
+<meta property="article:author" content="寄东南">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sendtosoutheast.github.io/images/qqhistory1.jpg"><link rel="shortcut icon" href="/images/favicon.jng"><link rel="canonical" href="https://sendtosoutheast.github.io/2022/07/29/qqhistory1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'QQ安卓端聊天记录数据分析 一',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-02 00:19:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/Avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/2022/07/23/hello-world/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/qqhistory1.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">寄东南のBlog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/2022/07/23/hello-world/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">QQ安卓端聊天记录数据分析 一</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-29T14:57:44.000Z" title="发表于 2022-07-29 22:57:44">2022-07-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T16:19:36.000Z" title="更新于 2022-10-02 00:19:36">2022-10-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="QQ安卓端聊天记录数据分析 一"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="QQ安卓端聊天记录数据分析-一"><a href="#QQ安卓端聊天记录数据分析-一" class="headerlink" title="QQ安卓端聊天记录数据分析 一"></a>QQ安卓端聊天记录数据分析 一</h1><h2 id="起因与现状"><a href="#起因与现状" class="headerlink" title="起因与现状"></a>起因与现状</h2><h4 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h4><p>起因呢……是我想备份和好朋友们的群聊聊天记录。其实聊天记录的文件信息并不多，不知道QQ是怎么动辄30G甚至更多……而且，时间一久，聊天记录就不让看了（指从群聊的查找聊天记录-日期）然而文件还没删，于是就开始了此项目。</p>
+<h4 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h4><p>网络上有一些提取工具。如广为传播的付费软件——楼月以及各种杂七杂八的软件。这些软件不是要求付费，就是消息乱码、不可使用、无法导出，所以，就开始了此项目。</p>
+<h4 id="曙光"><a href="#曙光" class="headerlink" title="曙光"></a>曙光</h4><p>曙光是这个github项目。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Yiyiyimu/QQ_History_Backup">GitHub - Yiyiyimu&#x2F;QQ_History_Backup: QQ聊天记录备份导出，支持无密钥导出，图片导出。无需编译有GUI界面</a></p>
+<p>在两年前我就研究过这个项目的源代码，算是专业对口了，python写的，借助百度不难理解。当然，这个项目也借鉴了如下两个年代久远的项目的代码：</p>
+<p>但是这个todo，两年没变了？</p>
+<blockquote>
+<p><strong>TODO</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 支持群聊导出</li>
+<li><input checked disabled type="checkbox"> 支持自动查找密钥</li>
+<li><input checked disabled type="checkbox"> 使用好友&#x2F;群聊昵称作为默认用户名</li>
+<li><input checked disabled type="checkbox"> 自动合并 db 和 slow-table</li>
+<li><input checked disabled type="checkbox"> 支持新 QQ emoji</li>
+<li><input checked disabled type="checkbox"> 支持单一文件导出</li>
+<li><input disabled type="checkbox"> 支持 iOS 导出</li>
+<li><input disabled type="checkbox"> 支持视频导出</li>
+<li><input disabled type="checkbox"> 支持音频导出</li>
+<li><input disabled type="checkbox"> 使用脱敏文件作为 e2e 测试</li>
+<li><input disabled type="checkbox"> 添加 Makefile 自动化 build&#x2F;test</li>
+<li><input disabled type="checkbox"> 支持缩略图</li>
+<li><input disabled type="checkbox"> 支持卡片分享</li>
+</ul>
+</blockquote>
+<p>在我使用的时候也遇到些问题：文字和图片混排的消息虽然有这个功能却无法正常解析，回复（引用）类型的消息会按照普通消息处理，导出HTML假如是以不内嵌图片的html的话要带上十几G的图片数据包一起移动，而且只能导出html，这是它的效果：</p>
+<img src="/2022/07/29/qqhistory1/屏幕截图1.jpg" alt="屏幕截图1" style="zoom:50%;">
+
+<p>没有消息框和头像，有点难受（当然这个和QQ电脑版无气泡的效果很像了）</p>
+<p>两年前第一次做这个项目，我将输出改为PDF，现在看来当时做的程序局限性很大而且拿不出手，而且问题也很多，那就，重新写一遍。</p>
+<h2 id="需准备的文件资源"><a href="#需准备的文件资源" class="headerlink" title="需准备的文件资源"></a>需准备的文件资源</h2><p>说明：以下提取方式为安卓，iphone好像有办法但是我没有去了解</p>
+<h4 id="1-com-tencent-mobileqq"><a href="#1-com-tencent-mobileqq" class="headerlink" title="1.com.tencent.mobileqq"></a>1.com.tencent.mobileqq</h4><p>data\data\com.tencent.mobileqq（打包过来）</p>
+<p>这个文件在根目录下，data文件夹没有root是无法查看的。不root的解决方案也有，通过手机自带的备份功能，备份整个QQ，然后找到压缩包传上电脑就OK了。网上教程很多，我的博客的宗旨就是不重复别人，不写浪费时间的一搜就搜得到的教程，所以就留空了。</p>
+<p>但是附一个来自</p>
+<p>整理的word教程吧。</p>
+<h4 id="2-chatimg"><a href="#2-chatimg" class="headerlink" title="2.chatimg"></a>2.chatimg</h4><p>（可选）图片文件，网上支持导出图片的软件不多，<a target="_blank" rel="noopener" href="https://github.com/Yiyiyimu/QQ_History_Backup">QQ_History_Backup </a>就算一个。</p>
+<h2 id="数据库数据初步分析"><a href="#数据库数据初步分析" class="headerlink" title="数据库数据初步分析"></a>数据库数据初步分析</h2><p>QQ安卓端的数据库采用sqlite3，所以使用py的sqlite3库就很方便了。</p>
+<p>QQ安卓端的数据库并非是全库加密，而是数据加密。</p>
+<p>聊天记录的数据，存放于\com.tencent.mobileqq\databases(db)\QQ号.db</p>
+<p>比较久远的聊天记录转移进了slowtable_QQ号.db</p>
+<h4 id="消息解密"><a href="#消息解密" class="headerlink" title="消息解密"></a>消息解密</h4><p>感谢各位前辈的贡献，解密是不用我自己捣鼓了。打开数据库里任何一张表，里面的字符串都是乱码或者16进制数据，如图</p>
+<img src="/2022/07/29/qqhistory1/屏幕截图5.jpg" alt="屏幕截图2">
+
+<p><strong>解密的秘钥在\com.tencent.mobileqq\files(f)\kc</strong></p>
+<p>前辈的解密代码如下。解密后就是数据本来的样字了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">self.key = <span class="string">&quot;xxx&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">self, data</span>):</span><br><span class="line">    msg = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(data) == <span class="built_in">bytes</span>:</span><br><span class="line">        msg = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(data)):</span><br><span class="line">            msg += <span class="built_in">bytes</span>([data[i] ^ <span class="built_in">ord</span>(self.key[i % <span class="built_in">len</span>(self.key)])])</span><br><span class="line">        <span class="keyword">return</span> msg</span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">type</span>(data) == <span class="built_in">str</span>:</span><br><span class="line">        msg = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(data)):</span><br><span class="line">            msg += <span class="built_in">chr</span>(<span class="built_in">ord</span>(data[i]) ^ <span class="built_in">ord</span>(self.key[i % <span class="built_in">len</span>(self.key)]))</span><br><span class="line">        <span class="keyword">return</span> msg</span><br></pre></td></tr></table></figure>
+
+<p>由于可能又图片表情等数据混杂其中，所以要等图片表情等处理完后再<code> .decode(&quot;utf-8&quot;)</code>了。当然，你可以现在就decode出来看看字符串长啥样。</p>
+<h4 id="表单大纲"><a href="#表单大纲" class="headerlink" title="表单大纲"></a>表单大纲</h4><p>我使用的是SQLiteSpy软件来查看数据库。先打开QQ号.db</p>
+<img src="/2022/07/29/qqhistory1/屏幕截图2.jpg" alt="屏幕截图2" style="zoom: 67%;">
+
+<p>有好多好多张表。不要慌，很多是对我们没用的表，如动作QQ秀等乱七八糟的。不用理会。</p>
+<img src="/2022/07/29/qqhistory1/屏幕截图3.jpg" alt="屏幕截图2" style="zoom: 67%;">
+
+<p>有很多mr_Friend开头的表，推测这就是聊天记录信息了。</p>
+<img src="/2022/07/29/qqhistory1/屏幕截图4.jpg" alt="屏幕截图2">
+
+<p>果然。这个表里面的东西，我们暂时略过，后面再做详细分析。我们先看表名：</p>
+<p>mr_Friend_xxx_New。xxx正是对面QQ的md5值。（mr_Troop_xxx_New同理为群聊信息）</p>
+<p>下面是这张表：Friends。</p>
+<h4 id="Friends表分析"><a href="#Friends表分析" class="headerlink" title="Friends表分析"></a>Friends表分析</h4><img src="/2022/07/29/qqhistory1/屏幕截图6.jpg" alt="屏幕截图2">
+
+<p>这个表包含着你的好友和昵称、对方svip信息等等。我们需要uin（QQ号）name（昵称）。其它数据请自行研究。</p>
+<p>数据：</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>uin</td>
+<td>QQ号</td>
+</tr>
+<tr>
+<td>name</td>
+<td>名称</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>备注</td>
+</tr>
+<tr>
+<td>mCompareSpell</td>
+<td>用户名拼音-qq号</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>可能是加好友时间</td>
+</tr>
+</tbody></table>
+<p>这个表里还混杂着坦白说等等无关信息，我的方案是查看是否存在mr_Friend_xxx_New这张表来筛选。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">getFriends</span>(<span class="params">self</span>):</span><br><span class="line"></span><br><span class="line">    self.friends = &#123;&#125;</span><br><span class="line">    cmd = <span class="string">&quot;SELECT uin, name ,remark FROM Friends&quot;</span><span class="comment">#从Friends表中取uin,name,remark</span></span><br><span class="line">    cursors = self.fill_cursors(cmd)</span><br><span class="line">    <span class="keyword">for</span> cs <span class="keyword">in</span> cursors:</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> cs:</span><br><span class="line">            friendQQNumber = self.decrypt(row[<span class="number">0</span>])</span><br><span class="line">            FriendName = self.decrypt(row[<span class="number">1</span>])</span><br><span class="line">            FriendRemark = self.decrypt(row[<span class="number">2</span>])</span><br><span class="line">            self.friends[friendQQNumber] = [FriendName,FriendRemark]</span><br><span class="line">            <span class="comment"># 解码并添加进friends字典</span></span><br><span class="line"></span><br><span class="line">    friendsKeys = <span class="built_in">list</span>(self.friends.keys())</span><br><span class="line">    <span class="keyword">for</span> friendQQNumber <span class="keyword">in</span> friendsKeys:</span><br><span class="line">        <span class="comment"># 计算qq号的md5值</span></span><br><span class="line">        friendQQNumbermd5 = hashlib.md5(friendQQNumber.encode(<span class="string">&quot;utf-8&quot;</span>)).hexdigest().upper()</span><br><span class="line">        cmd = <span class="string">&quot;SELECT count(*) FROM sqlite_master WHERE type=&#x27;table&#x27; AND name=&#x27;%s&#x27;&quot;</span> \</span><br><span class="line">              % (<span class="string">&quot;mr_friend_%s_New&quot;</span> % friendQQNumbermd5)</span><br><span class="line">        cursorifin = self.DBcursor1.execute(cmd)</span><br><span class="line">        ifin = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> cs <span class="keyword">in</span> cursorifin:</span><br><span class="line">            ifin = cs[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> ifin == <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 假如并不存在聊天数据表就剔除消息</span></span><br><span class="line">            self.friends.pop(friendQQNumber)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="TroopInfoV2表分析"><a href="#TroopInfoV2表分析" class="headerlink" title="TroopInfoV2表分析"></a>TroopInfoV2表分析</h4><p>和Friends表大同小异，存储群信息</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>troopuin</td>
+<td>群组uin</td>
+</tr>
+<tr>
+<td>troopname</td>
+<td>群组名称</td>
+</tr>
+<tr>
+<td>Administrator</td>
+<td>管理员1QQ号|管理员2QQ号|…………</td>
+</tr>
+<tr>
+<td>mCompareSpell</td>
+<td>群拼音-qq号</td>
+</tr>
+<tr>
+<td>troopCreateTime</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>troopowneruin</td>
+<td>群主QQ号</td>
+</tr>
+</tbody></table>
+<h4 id="TroopMemberInfo表分析"><a href="#TroopMemberInfo表分析" class="headerlink" title="TroopMemberInfo表分析"></a>TroopMemberInfo表分析</h4><p>群友信息表，所有的群友都在同一个表里</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>troopuin</td>
+<td>群友所在群</td>
+</tr>
+<tr>
+<td>memberuin</td>
+<td>群友QQ</td>
+</tr>
+<tr>
+<td>friendnick</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>troopnick</td>
+<td>群昵称</td>
+</tr>
+<tr>
+<td>join_time</td>
+<td>入群时间</td>
+</tr>
+<tr>
+<td>NewRealLevel</td>
+<td>在群等级</td>
+</tr>
+</tbody></table>
+<p>真服了QQ，列名还有不同的方式……驼峰法、全小写、“_”间隔 一应俱全</p>
+<h4 id="mr-friend-trpoop-XXXXXXX（QQ号MD5）-New表分析"><a href="#mr-friend-trpoop-XXXXXXX（QQ号MD5）-New表分析" class="headerlink" title="mr_friend(trpoop)_XXXXXXX（QQ号MD5）_New表分析"></a>mr_friend(trpoop)_XXXXXXX（QQ号MD5）_New表分析</h4><p><img src="/2022/07/29/qqhistory1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE7.jpg" alt="屏幕截图 2022-10-02 000701"></p>
+<p><img src="/2022/07/29/qqhistory1/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE8.jpg" alt="屏幕截图 2022-10-02 000942"></p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>msgtype</td>
+<td>消息类型，下一篇重点</td>
+</tr>
+<tr>
+<td>senderuin</td>
+<td>发送者uin，需解密</td>
+</tr>
+<tr>
+<td>msgData</td>
+<td>消息内容，需解密</td>
+</tr>
+<tr>
+<td>time</td>
+<td>时间戳，不用解密</td>
+</tr>
+<tr>
+<td>extStr</td>
+<td>额外消息（属性等）需解密</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmd = <span class="string">&quot;select msgtype,senderuin,msgData,time,extStr from mr_friend_&#123;&#125;_New order by time&quot;</span>.<span class="built_in">format</span>(targetQQmd5)</span><br><span class="line"><span class="comment">#提取信息</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这个项目已经做了很长时间了，目前空闲时间少，剩下的，留给以后慢慢整吧，第一篇到此为止吧。我们还没有正式开始分析消息。拜拜！2022年10月2日00:19:36</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://sendtosoutheast.github.io">寄东南</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://sendtosoutheast.github.io/2022/07/29/qqhistory1/">https://sendtosoutheast.github.io/2022/07/29/qqhistory1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://sendtosoutheast.github.io" target="_blank">寄东南のBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/qqhistory1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/09/10/FAFSTSpowerboard1/"><img class="prev-cover" src="/images/5306powerboard.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">IP5306电源板设计</div></div></a></div><div class="next-post pull-right"><a href="/2022/07/25/BGInote/"><img class="next-cover" src="/images/chlo.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">BGI引擎脚本简单分析-基于巧克甜恋</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/Avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">寄东南</div><div class="author-info__description">寄！(其实起名字时还没寄这个梗)</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SendToSouthEast"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/SendToSouthEast" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/sendtose@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#QQ%E5%AE%89%E5%8D%93%E7%AB%AF%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text">QQ安卓端聊天记录数据分析 一</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0%E4%B8%8E%E7%8E%B0%E7%8A%B6"><span class="toc-number">1.1.</span> <span class="toc-text">起因与现状</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%B0%E7%8A%B6"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">现状</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%99%E5%85%89"><span class="toc-number">1.1.0.3.</span> <span class="toc-text">曙光</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E5%87%86%E5%A4%87%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90"><span class="toc-number">1.2.</span> <span class="toc-text">需准备的文件资源</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-com-tencent-mobileqq"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">1.com.tencent.mobileqq</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-chatimg"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">2.chatimg</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%E5%88%9D%E6%AD%A5%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">数据库数据初步分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E8%A7%A3%E5%AF%86"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">消息解密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E5%A4%A7%E7%BA%B2"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">表单大纲</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Friends%E8%A1%A8%E5%88%86%E6%9E%90"><span class="toc-number">1.3.0.3.</span> <span class="toc-text">Friends表分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TroopInfoV2%E8%A1%A8%E5%88%86%E6%9E%90"><span class="toc-number">1.3.0.4.</span> <span class="toc-text">TroopInfoV2表分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TroopMemberInfo%E8%A1%A8%E5%88%86%E6%9E%90"><span class="toc-number">1.3.0.5.</span> <span class="toc-text">TroopMemberInfo表分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mr-friend-trpoop-XXXXXXX%EF%BC%88QQ%E5%8F%B7MD5%EF%BC%89-New%E8%A1%A8%E5%88%86%E6%9E%90"><span class="toc-number">1.3.0.6.</span> <span class="toc-text">mr_friend(trpoop)_XXXXXXX（QQ号MD5）_New表分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.4.</span> <span class="toc-text">结语</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/10/FAFSTSpowerboard1/" title="IP5306电源板设计"><img src="/images/5306powerboard.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IP5306电源板设计"/></a><div class="content"><a class="title" href="/2022/09/10/FAFSTSpowerboard1/" title="IP5306电源板设计">IP5306电源板设计</a><time datetime="2022-09-10T06:38:28.000Z" title="发表于 2022-09-10 14:38:28">2022-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/29/qqhistory1/" title="QQ安卓端聊天记录数据分析 一"><img src="/images/qqhistory1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QQ安卓端聊天记录数据分析 一"/></a><div class="content"><a class="title" href="/2022/07/29/qqhistory1/" title="QQ安卓端聊天记录数据分析 一">QQ安卓端聊天记录数据分析 一</a><time datetime="2022-07-29T14:57:44.000Z" title="发表于 2022-07-29 22:57:44">2022-07-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/25/BGInote/" title="BGI引擎脚本简单分析-基于巧克甜恋"><img src="/images/chlo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BGI引擎脚本简单分析-基于巧克甜恋"/></a><div class="content"><a class="title" href="/2022/07/25/BGInote/" title="BGI引擎脚本简单分析-基于巧克甜恋">BGI引擎脚本简单分析-基于巧克甜恋</a><time datetime="2022-07-25T07:08:46.000Z" title="发表于 2022-07-25 15:08:46">2022-07-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/23/hello-world/" title="Hello World"><img src="/images/evcg09b1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2022/07/23/hello-world/" title="Hello World">Hello World</a><time datetime="2022-07-23T11:15:17.000Z" title="发表于 2022-07-23 19:15:17">2022-07-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By 寄东南</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
